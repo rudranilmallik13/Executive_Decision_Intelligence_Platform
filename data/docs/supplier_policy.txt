@@ -1,0 +1,18 @@
+SUPPLIER MANAGEMENT POLICY
+Document owner: VP Supply Chain
+
+1. SUPPLIER DIVERSIFICATION
+No single supplier should account for more than 40% of regional fulfillment volume
+for any product category. Nordic Supply Co currently accounts for approximately 30%
+of European fulfillment volume for Kitchen Appliances and Wearables, within policy
+limits but flagged as a concentration risk given its 2026 capacity constraints.
+
+2. LEAD TIME AND SAFETY STOCK
+Standard safety stock is set at 50% of expected demand over the supplier lead time.
+Regions with a single dominant supplier for a category should hold safety stock at
+the higher end of this range (60-70%) to buffer against disruption.
+
+3. SUPPLIER EVALUATION CRITERIA
+Suppliers are evaluated quarterly on: on-time delivery rate, defect rate, cost
+competitiveness, and capacity headroom. A secondary supplier must be qualified for
+any product category exceeding $5M in annual regional volume from a single source.

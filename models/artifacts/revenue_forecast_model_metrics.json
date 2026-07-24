@@ -1,0 +1,42 @@
+{
+  "target": "revenue",
+  "mae": 35835.74715909091,
+  "mape": 0.0429916817523323,
+  "r2": 0.9517774589742953,
+  "n_train": 131,
+  "n_test": 33,
+  "top_drivers": [
+    {
+      "feature": "marketing_spend",
+      "mean_abs_shap": 134589.75
+    },
+    {
+      "feature": "revenue_lag1",
+      "mean_abs_shap": 26371.52
+    },
+    {
+      "feature": "month_num",
+      "mean_abs_shap": 20073.94
+    },
+    {
+      "feature": "time_idx",
+      "mean_abs_shap": 18825.98
+    },
+    {
+      "feature": "units_sold_lag1",
+      "mean_abs_shap": 10520.79
+    },
+    {
+      "feature": "competitor_price_index",
+      "mean_abs_shap": 7244.79
+    },
+    {
+      "feature": "revenue_lag2",
+      "mean_abs_shap": 7120.04
+    },
+    {
+      "feature": "avg_temp_c",
+      "mean_abs_shap": 5335.93
+    }
+  ]
+}

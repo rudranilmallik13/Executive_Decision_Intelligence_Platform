@@ -1,0 +1,211 @@
+month,category,competitor_price_index
+2023-01-01,Audio,100.8
+2023-01-01,Home Environment,99.0
+2023-01-01,Kitchen Appliances,97.8
+2023-01-01,Office Furniture,100.1
+2023-01-01,Wearables,104.1
+2023-02-01,Audio,99.7
+2023-02-01,Home Environment,100.0
+2023-02-01,Kitchen Appliances,101.5
+2023-02-01,Office Furniture,99.1
+2023-02-01,Wearables,99.2
+2023-03-01,Audio,103.9
+2023-03-01,Home Environment,102.1
+2023-03-01,Kitchen Appliances,98.9
+2023-03-01,Office Furniture,97.1
+2023-03-01,Wearables,100.0
+2023-04-01,Audio,101.1
+2023-04-01,Home Environment,98.9
+2023-04-01,Kitchen Appliances,101.2
+2023-04-01,Office Furniture,100.7
+2023-04-01,Wearables,99.0
+2023-05-01,Audio,100.6
+2023-05-01,Home Environment,100.6
+2023-05-01,Kitchen Appliances,102.9
+2023-05-01,Office Furniture,99.9
+2023-05-01,Wearables,100.1
+2023-06-01,Audio,98.4
+2023-06-01,Home Environment,101.4
+2023-06-01,Kitchen Appliances,98.3
+2023-06-01,Office Furniture,100.1
+2023-06-01,Wearables,98.5
+2023-07-01,Audio,101.9
+2023-07-01,Home Environment,98.3
+2023-07-01,Kitchen Appliances,100.1
+2023-07-01,Office Furniture,100.0
+2023-07-01,Wearables,97.6
+2023-08-01,Audio,101.8
+2023-08-01,Home Environment,100.6
+2023-08-01,Kitchen Appliances,103.0
+2023-08-01,Office Furniture,103.1
+2023-08-01,Wearables,102.7
+2023-09-01,Audio,102.0
+2023-09-01,Home Environment,97.0
+2023-09-01,Kitchen Appliances,102.9
+2023-09-01,Office Furniture,100.4
+2023-09-01,Wearables,100.2
+2023-10-01,Audio,98.2
+2023-10-01,Home Environment,97.7
+2023-10-01,Kitchen Appliances,99.1
+2023-10-01,Office Furniture,101.5
+2023-10-01,Wearables,105.2
+2023-11-01,Audio,101.7
+2023-11-01,Home Environment,102.9
+2023-11-01,Kitchen Appliances,99.1
+2023-11-01,Office Furniture,99.2
+2023-11-01,Wearables,98.7
+2023-12-01,Audio,97.4
+2023-12-01,Home Environment,100.8
+2023-12-01,Kitchen Appliances,99.7
+2023-12-01,Office Furniture,102.5
+2023-12-01,Wearables,102.1
+2024-01-01,Audio,96.7
+2024-01-01,Home Environment,99.3
+2024-01-01,Kitchen Appliances,102.3
+2024-01-01,Office Furniture,100.8
+2024-01-01,Wearables,96.3
+2024-02-01,Audio,102.1
+2024-02-01,Home Environment,97.5
+2024-02-01,Kitchen Appliances,101.8
+2024-02-01,Office Furniture,102.5
+2024-02-01,Wearables,100.2
+2024-03-01,Audio,99.1
+2024-03-01,Home Environment,103.5
+2024-03-01,Kitchen Appliances,103.4
+2024-03-01,Office Furniture,100.3
+2024-03-01,Wearables,100.9
+2024-04-01,Audio,105.3
+2024-04-01,Home Environment,101.5
+2024-04-01,Kitchen Appliances,97.6
+2024-04-01,Office Furniture,100.6
+2024-04-01,Wearables,98.9
+2024-05-01,Audio,100.7
+2024-05-01,Home Environment,102.1
+2024-05-01,Kitchen Appliances,101.8
+2024-05-01,Office Furniture,99.1
+2024-05-01,Wearables,98.5
+2024-06-01,Audio,103.9
+2024-06-01,Home Environment,103.7
+2024-06-01,Kitchen Appliances,96.0
+2024-06-01,Office Furniture,101.7
+2024-06-01,Wearables,102.1
+2024-07-01,Audio,101.1
+2024-07-01,Home Environment,97.2
+2024-07-01,Kitchen Appliances,100.3
+2024-07-01,Office Furniture,97.7
+2024-07-01,Wearables,99.4
+2024-08-01,Audio,100.2
+2024-08-01,Home Environment,103.2
+2024-08-01,Kitchen Appliances,97.8
+2024-08-01,Office Furniture,99.6
+2024-08-01,Wearables,98.7
+2024-09-01,Audio,101.2
+2024-09-01,Home Environment,102.7
+2024-09-01,Kitchen Appliances,101.0
+2024-09-01,Office Furniture,101.2
+2024-09-01,Wearables,99.8
+2024-10-01,Audio,104.1
+2024-10-01,Home Environment,96.3
+2024-10-01,Kitchen Appliances,100.1
+2024-10-01,Office Furniture,101.2
+2024-10-01,Wearables,101.4
+2024-11-01,Audio,99.5
+2024-11-01,Home Environment,102.4
+2024-11-01,Kitchen Appliances,100.9
+2024-11-01,Office Furniture,99.3
+2024-11-01,Wearables,100.6
+2024-12-01,Audio,96.7
+2024-12-01,Home Environment,96.7
+2024-12-01,Kitchen Appliances,101.1
+2024-12-01,Office Furniture,100.5
+2024-12-01,Wearables,99.7
+2025-01-01,Audio,98.5
+2025-01-01,Home Environment,101.6
+2025-01-01,Kitchen Appliances,98.6
+2025-01-01,Office Furniture,97.3
+2025-01-01,Wearables,102.7
+2025-02-01,Audio,101.9
+2025-02-01,Home Environment,99.0
+2025-02-01,Kitchen Appliances,101.6
+2025-02-01,Office Furniture,100.8
+2025-02-01,Wearables,100.6
+2025-03-01,Audio,98.7
+2025-03-01,Home Environment,101.4
+2025-03-01,Kitchen Appliances,98.0
+2025-03-01,Office Furniture,101.8
+2025-03-01,Wearables,99.0
+2025-04-01,Audio,101.4
+2025-04-01,Home Environment,101.4
+2025-04-01,Kitchen Appliances,103.8
+2025-04-01,Office Furniture,102.6
+2025-04-01,Wearables,100.1
+2025-05-01,Audio,97.9
+2025-05-01,Home Environment,96.1
+2025-05-01,Kitchen Appliances,98.8
+2025-05-01,Office Furniture,102.1
+2025-05-01,Wearables,99.9
+2025-06-01,Audio,101.0
+2025-06-01,Home Environment,98.3
+2025-06-01,Kitchen Appliances,98.8
+2025-06-01,Office Furniture,100.6
+2025-06-01,Wearables,97.6
+2025-07-01,Audio,96.6
+2025-07-01,Home Environment,100.2
+2025-07-01,Kitchen Appliances,99.0
+2025-07-01,Office Furniture,100.5
+2025-07-01,Wearables,96.7
+2025-08-01,Audio,99.5
+2025-08-01,Home Environment,101.8
+2025-08-01,Kitchen Appliances,97.2
+2025-08-01,Office Furniture,98.6
+2025-08-01,Wearables,102.0
+2025-09-01,Audio,98.2
+2025-09-01,Home Environment,98.8
+2025-09-01,Kitchen Appliances,98.9
+2025-09-01,Office Furniture,101.1
+2025-09-01,Wearables,98.2
+2025-10-01,Audio,99.8
+2025-10-01,Home Environment,98.1
+2025-10-01,Kitchen Appliances,97.2
+2025-10-01,Office Furniture,102.7
+2025-10-01,Wearables,102.5
+2025-11-01,Audio,102.1
+2025-11-01,Home Environment,94.3
+2025-11-01,Kitchen Appliances,96.9
+2025-11-01,Office Furniture,101.3
+2025-11-01,Wearables,101.3
+2025-12-01,Audio,99.6
+2025-12-01,Home Environment,98.1
+2025-12-01,Kitchen Appliances,99.3
+2025-12-01,Office Furniture,102.6
+2025-12-01,Wearables,101.4
+2026-01-01,Audio,98.0
+2026-01-01,Home Environment,98.2
+2026-01-01,Kitchen Appliances,100.7
+2026-01-01,Office Furniture,99.4
+2026-01-01,Wearables,98.8
+2026-02-01,Audio,99.5
+2026-02-01,Home Environment,96.5
+2026-02-01,Kitchen Appliances,97.8
+2026-02-01,Office Furniture,100.4
+2026-02-01,Wearables,97.8
+2026-03-01,Audio,99.8
+2026-03-01,Home Environment,100.0
+2026-03-01,Kitchen Appliances,101.6
+2026-03-01,Office Furniture,96.5
+2026-03-01,Wearables,98.9
+2026-04-01,Audio,89.0
+2026-04-01,Home Environment,87.0
+2026-04-01,Kitchen Appliances,87.3
+2026-04-01,Office Furniture,88.5
+2026-04-01,Wearables,89.0
+2026-05-01,Audio,90.5
+2026-05-01,Home Environment,91.4
+2026-05-01,Kitchen Appliances,91.1
+2026-05-01,Office Furniture,85.2
+2026-05-01,Wearables,91.8
+2026-06-01,Audio,86.4
+2026-06-01,Home Environment,87.3
+2026-06-01,Kitchen Appliances,89.3
+2026-06-01,Office Furniture,91.1
+2026-06-01,Wearables,84.4

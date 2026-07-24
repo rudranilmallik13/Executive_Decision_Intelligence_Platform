@@ -1,0 +1,34 @@
+BOARD MEETING NOTES - Q2 2026 BUSINESS REVIEW
+Date: July 8, 2026 (Confidential - Internal Use Only)
+
+ATTENDEES: CEO, CFO, VP Sales, VP Supply Chain, VP Pricing, Board Members
+
+1. REVENUE PERFORMANCE
+Q2 2026 revenue came in below plan. The CFO presented a regional breakdown showing
+that Europe was the primary driver of the shortfall, with revenue down sharply
+compared to Q1. Two compounding factors were identified:
+  (a) A supplier disruption at Nordic Supply Co's European facility reduced
+      available inventory for Kitchen Appliances and Wearables SKUs starting in
+      April, well below the original 2026 outlook flagged in the Annual Report.
+  (b) The April price increase, while approved and modeled internally, coincided
+      with an unanticipated competitor price war in the same categories, amplifying
+      the expected unit volume decline beyond the Pricing Committee's original
+      elasticity estimate.
+
+2. CUSTOMER IMPACT
+The VP of Sales noted a rise in customer complaints related to order delays in
+Europe, and early churn-model signals showing elevated risk among Mid-Market
+customers with high support-ticket volume in that region.
+
+3. ACTION ITEMS
+  - VP Supply Chain to finalize a secondary European supplier agreement by end of Q3 2026.
+  - VP Pricing to run a competitive-response scenario analysis on a partial price
+    rollback for the affected categories in Europe only.
+  - VP Sales to prioritize retention outreach to at-risk Mid-Market accounts in Europe.
+  - CFO to update the FY2026 revenue forecast reflecting the Q2 shortfall and the
+    supplier resolution timeline.
+
+4. INFLATION SENSITIVITY
+The Board requested a scenario analysis on the impact of a further 3-percentage-point
+increase in input cost inflation on gross margin and recommended pricing actions,
+to be presented at the Q3 2026 board meeting.

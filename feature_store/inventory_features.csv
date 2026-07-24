@@ -1,0 +1,41 @@
+region,sku,product_name,category,units_on_hand,supplier_lead_time_days,avg_daily_demand,safety_stock,reorder_point,supplier,unit_cost,days_of_supply,stockout_risk
+North America,SKU-100,Aurora Blender X1,Kitchen Appliances,2131,7,4.42,15.5,46.4,Meridian Components,50.98,482.12669683257917,0
+North America,SKU-101,Aurora Blender X2 Pro,Kitchen Appliances,2238,7,4.38,15.3,45.9,Nordic Supply Co,88.21,510.95890410958907,0
+North America,SKU-200,NovaFit Smartwatch,Wearables,2432,7,4.37,15.3,45.9,PacificParts Ltd,122.32,556.5217391304348,0
+North America,SKU-201,NovaFit Smartwatch SE,Wearables,2482,14,4.42,30.9,92.8,PacificParts Ltd,77.58,561.5384615384615,0
+North America,SKU-300,CloudDesk Ergo Chair,Office Furniture,762,30,4.49,67.4,202.2,Nordic Supply Co,195.18,169.71046770601336,0
+North America,SKU-301,CloudDesk Standing Desk,Office Furniture,1186,30,4.43,66.4,199.2,Delta Manufacturing,234.8,267.7200902934537,0
+North America,SKU-400,PulseAudio Earbuds,Audio,733,7,4.46,15.6,46.8,PacificParts Ltd,39.69,164.34977578475338,0
+North America,SKU-401,PulseAudio Earbuds Max,Audio,887,21,4.45,46.7,140.2,PacificParts Ltd,81.86,199.3258426966292,0
+North America,SKU-500,GreenHome Air Purifier,Home Environment,614,21,4.44,46.7,140.0,PacificParts Ltd,131.73,138.28828828828827,0
+North America,SKU-501,GreenHome Air Purifier Mini,Home Environment,2389,14,4.47,31.3,93.8,Meridian Components,68.19,534.4519015659955,0
+Europe,SKU-100,Aurora Blender X1,Kitchen Appliances,1245,21,4.28,44.9,134.7,Nordic Supply Co,56.33,290.8878504672897,0
+Europe,SKU-101,Aurora Blender X2 Pro,Kitchen Appliances,1080,30,4.28,64.2,192.7,PacificParts Ltd,80.99,252.33644859813083,0
+Europe,SKU-200,NovaFit Smartwatch,Wearables,2475,21,4.31,45.2,135.6,Meridian Components,111.87,574.2459396751741,0
+Europe,SKU-201,NovaFit Smartwatch SE,Wearables,1026,14,4.29,30.1,90.2,Nordic Supply Co,81.79,239.16083916083915,0
+Europe,SKU-300,CloudDesk Ergo Chair,Office Furniture,1755,7,4.3,15.0,45.1,PacificParts Ltd,218.36,408.13953488372096,0
+Europe,SKU-301,CloudDesk Standing Desk,Office Furniture,1973,7,4.36,15.3,45.8,Meridian Components,238.25,452.52293577981646,0
+Europe,SKU-400,PulseAudio Earbuds,Audio,328,14,4.32,30.2,90.6,Nordic Supply Co,45.1,75.92592592592592,0
+Europe,SKU-401,PulseAudio Earbuds Max,Audio,1037,30,4.42,66.3,198.8,Delta Manufacturing,90.31,234.6153846153846,0
+Europe,SKU-500,GreenHome Air Purifier,Home Environment,1599,14,4.35,30.4,91.3,PacificParts Ltd,109.85,367.58620689655174,0
+Europe,SKU-501,GreenHome Air Purifier Mini,Home Environment,1090,21,4.32,45.3,136.0,PacificParts Ltd,72.11,252.3148148148148,0
+APAC,SKU-100,Aurora Blender X1,Kitchen Appliances,2977,30,4.43,66.4,199.3,Meridian Components,48.5,672.0090293453725,0
+APAC,SKU-101,Aurora Blender X2 Pro,Kitchen Appliances,1294,14,4.43,31.0,93.0,Meridian Components,95.7,292.0993227990971,0
+APAC,SKU-200,NovaFit Smartwatch,Wearables,1443,30,4.43,66.4,199.3,Delta Manufacturing,101.22,325.73363431151245,0
+APAC,SKU-201,NovaFit Smartwatch SE,Wearables,576,7,4.41,15.4,46.2,Delta Manufacturing,72.84,130.6122448979592,0
+APAC,SKU-300,CloudDesk Ergo Chair,Office Furniture,649,7,4.52,15.8,47.5,Meridian Components,201.0,143.5840707964602,0
+APAC,SKU-301,CloudDesk Standing Desk,Office Furniture,1020,21,4.43,46.5,139.5,Meridian Components,270.64,230.24830699774267,0
+APAC,SKU-400,PulseAudio Earbuds,Audio,667,21,4.47,47.0,141.0,Nordic Supply Co,44.32,149.21700223713648,0
+APAC,SKU-401,PulseAudio Earbuds Max,Audio,2466,21,4.45,46.8,140.3,Nordic Supply Co,85.13,554.1573033707865,0
+APAC,SKU-500,GreenHome Air Purifier,Home Environment,2227,7,4.52,15.8,47.4,Nordic Supply Co,122.95,492.69911504424783,0
+APAC,SKU-501,GreenHome Air Purifier Mini,Home Environment,1806,7,4.51,15.8,47.4,Delta Manufacturing,72.19,400.44345898004434,0
+Latin America,SKU-100,Aurora Blender X1,Kitchen Appliances,2720,7,4.46,15.6,46.8,Delta Manufacturing,57.81,609.8654708520179,0
+Latin America,SKU-101,Aurora Blender X2 Pro,Kitchen Appliances,2347,14,4.4,30.8,92.4,PacificParts Ltd,94.41,533.4090909090909,0
+Latin America,SKU-200,NovaFit Smartwatch,Wearables,1680,30,4.43,66.5,199.5,Delta Manufacturing,104.62,379.23250564334086,0
+Latin America,SKU-201,NovaFit Smartwatch SE,Wearables,1995,14,4.46,31.2,93.6,PacificParts Ltd,76.78,447.30941704035877,0
+Latin America,SKU-300,CloudDesk Ergo Chair,Office Furniture,961,21,4.54,47.7,143.1,Meridian Components,208.03,211.67400881057267,0
+Latin America,SKU-301,CloudDesk Standing Desk,Office Furniture,2991,21,4.46,46.8,140.4,Nordic Supply Co,218.41,670.6278026905829,0
+Latin America,SKU-400,PulseAudio Earbuds,Audio,2791,7,4.47,15.7,47.0,Nordic Supply Co,41.88,624.3847874720358,0
+Latin America,SKU-401,PulseAudio Earbuds Max,Audio,1047,7,4.38,15.3,46.0,Nordic Supply Co,82.84,239.04109589041096,0
+Latin America,SKU-500,GreenHome Air Purifier,Home Environment,2130,14,4.48,31.4,94.1,Delta Manufacturing,137.65,475.4464285714285,0
+Latin America,SKU-501,GreenHome Air Purifier Mini,Home Environment,2136,7,4.49,15.7,47.2,PacificParts Ltd,60.53,475.72383073496655,0
