@@ -74,7 +74,6 @@ def build_monthly_region_features(sales, finance, weather, competitor, news):
 
     df = df.dropna(subset=["revenue_lag1"]).reset_index(drop=True)
     df.to_parquet(STORE / "monthly_region_features.parquet", index=False)
-    df.to_csv(STORE / "monthly_region_features.csv", index=False)
     print(f"monthly_region_features -> {df.shape}")
     return df
 
@@ -86,7 +85,6 @@ def build_customer_features(crm):
     df["is_short_contract"] = (df["contract_length_months"] <= 1).astype(int)
     df["revenue_last_year_est"] = df["avg_order_value"] * df["orders_last_year"]
     df.to_parquet(STORE / "customer_features.parquet", index=False)
-    df.to_csv(STORE / "customer_features.csv", index=False)
     print(f"customer_features -> {df.shape}")
     return df
 
@@ -97,7 +95,6 @@ def build_inventory_features(erp):
                                      df["units_on_hand"] / df["avg_daily_demand"], np.inf)
     df["stockout_risk"] = (df["days_of_supply"] < df["supplier_lead_time_days"]).astype(int)
     df.to_parquet(STORE / "inventory_features.parquet", index=False)
-    df.to_csv(STORE / "inventory_features.csv", index=False)
     print(f"inventory_features -> {df.shape}")
     return df
 

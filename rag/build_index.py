@@ -10,7 +10,7 @@ module -- which then fails to unpickle from any other entry point (e.g. the
 agent or the report generator). Always build the index via this script.
 
 Run:
-    python3 rag/build_index.py
+    python rag/build_index.py
 """
 import sys
 from pathlib import Path

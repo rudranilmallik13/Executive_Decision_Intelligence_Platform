@@ -14,27 +14,41 @@ Output:
     outputs/EDIP_Executive_Report.pptx
 """
 import sys
+from io import BytesIO
 from pathlib import Path
-from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
-from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 OUT_DIR = ROOT / "outputs"
 OUT_DIR.mkdir(exist_ok=True)
 
+try:
+    from pptx import Presentation
+    from pptx.util import Inches, Pt, Emu
+    from pptx.dml.color import RGBColor
+    from pptx.enum.text import PP_ALIGN
+    PPTX_AVAILABLE = True
+except ModuleNotFoundError:
+    Presentation = None
+    Inches = Pt = Emu = RGBColor = PP_ALIGN = None
+    PPTX_AVAILABLE = False
+
 from agent.ai_consultant import AIConsultant
 
-NAVY = RGBColor(0x10, 0x1B, 0x3A)
-ACCENT = RGBColor(0x2E, 0x6B, 0xE0)
-GREY = RGBColor(0x55, 0x5B, 0x66)
-WHITE = RGBColor(0xFF, 0xFF, 0xFF)
-LIGHT_BG = RGBColor(0xF4, 0xF6, 0xFB)
+if PPTX_AVAILABLE:
+    NAVY = RGBColor(0x10, 0x1B, 0x3A)
+    ACCENT = RGBColor(0x2E, 0x6B, 0xE0)
+    GREY = RGBColor(0x55, 0x5B, 0x66)
+    WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+    LIGHT_BG = RGBColor(0xF4, 0xF6, 0xFB)
+else:
+    NAVY = ACCENT = GREY = WHITE = LIGHT_BG = None
 
 
 def add_title_slide(prs, title, subtitle):
+    if not PPTX_AVAILABLE:
+        raise ImportError("python-pptx is required to build PPT reports. Install it with 'pip install python-pptx'.")
+
     slide = prs.slides.add_slide(prs.slide_layouts[6])  # blank layout
     bg = slide.shapes.add_shape(1, 0, 0, prs.slide_width, prs.slide_height)
     bg.fill.solid(); bg.fill.fore_color.rgb = NAVY
@@ -53,7 +67,9 @@ def add_title_slide(prs, title, subtitle):
     return slide
 
 
-def add_section_header(slide, text, top=Inches(0.4)):
+def add_section_header(slide, text, top=None):
+    if top is None:
+        top = Inches(0.4)
     tb = slide.shapes.add_textbox(Inches(0.6), top, Inches(12), Inches(0.8))
     tf = tb.text_frame
     p = tf.paragraphs[0]; p.text = text
@@ -67,7 +83,15 @@ def add_body_slide(prs, header):
     return slide
 
 
-def add_bullets(slide, items, left=Inches(0.6), top=Inches(1.3), width=Inches(12), height=Inches(5.5), size=16):
+def add_bullets(slide, items, left=None, top=None, width=None, height=None, size=16):
+    if left is None:
+        left = Inches(0.6)
+    if top is None:
+        top = Inches(1.3)
+    if width is None:
+        width = Inches(12)
+    if height is None:
+        height = Inches(5.5)
     tb = slide.shapes.add_textbox(left, top, width, height)
     tf = tb.text_frame; tf.word_wrap = True
     for i, item in enumerate(items):
@@ -79,12 +103,13 @@ def add_bullets(slide, items, left=Inches(0.6), top=Inches(1.3), width=Inches(12
     return tb
 
 
-def add_kpi_cards(slide, kpis, top=Inches(1.3)):
+def add_kpi_cards(slide, kpis, top=None):
+    if top is None:
+        top = Inches(1.3)
     n = len(kpis)
     card_w = Inches(2.7)
     gap = Inches(0.3)
     total_w = card_w * n + gap * (n - 1)
-    left0 = Emu(int((prs_width - total_w) / 2)) if False else Inches(0.6)
     x = Inches(0.6)
     for label, value in kpis:
         card = slide.shapes.add_shape(1, x, top, card_w, Inches(1.4))
@@ -98,6 +123,65 @@ def add_kpi_cards(slide, kpis, top=Inches(1.3)):
         p2 = tf.add_paragraph(); p2.text = label
         p2.font.size = Pt(12); p2.font.color.rgb = GREY
         x = Emu(int(x) + int(card_w) + int(gap))
+
+
+def add_answer_summary_slide(prs, answer):
+    slide = add_body_slide(prs, "Executive Summary")
+    items = []
+    if answer.get("question"):
+        items.append(f"Question: {answer['question']}")
+    if answer.get("narrative"):
+        items.append(f"Summary: {answer['narrative']}")
+    if answer.get("quantitative_findings"):
+        items.append("Quantitative findings:")
+        for key, value in answer["quantitative_findings"].items():
+            items.append(f"  • {key.replace('_', ' ').title()}: {value}")
+    if answer.get("summary"):
+        items.append("Highlights:")
+        for key, value in answer["summary"].items():
+            items.append(f"  • {key.replace('_', ' ').title()}: {value}")
+    if answer.get("recommended_actions"):
+        items.append("Recommended actions:")
+        for action in answer["recommended_actions"]:
+            items.append(f"  {action['priority']}. {action['action']} (Owner: {action['owner']})")
+    add_bullets(slide, items, size=14)
+
+
+def save_presentation(prs, path=None):
+    if path is not None:
+        prs.save(path)
+        return path
+    buf = BytesIO()
+    prs.save(buf)
+    buf.seek(0)
+    return buf.getvalue()
+
+
+def build_presentation_bytes(answer, title=None):
+    if not PPTX_AVAILABLE:
+        raise ImportError("python-pptx is required to build PPT reports. Install it with 'pip install python-pptx'.")
+
+    prs = Presentation()
+    prs.slide_width = Inches(13.333)
+    prs.slide_height = Inches(7.5)
+    global prs_width
+    prs_width = prs.slide_width
+
+    subtitle = title or answer.get("question", "EDIP Executive Summary")
+    add_title_slide(prs, "EDIP Executive Decision Briefing", subtitle)
+    add_answer_summary_slide(prs, answer)
+
+    if answer.get("recommended_actions"):
+        slide = add_body_slide(prs, "Recommended Actions")
+        lines = [f"{a['priority']}. {a['action']}" for a in answer["recommended_actions"]]
+        add_bullets(slide, lines, size=15)
+
+    if answer.get("supporting_evidence"):
+        slide = add_body_slide(prs, "Supporting Evidence")
+        evidence_lines = [f"{e['source']}: {e['excerpt']}" for e in answer["supporting_evidence"][:5]]
+        add_bullets(slide, evidence_lines, size=14)
+
+    return save_presentation(prs)
 
 
 def build_report():

@@ -21,18 +21,20 @@ explanations (SHAP), and citations back to the source documents.
 
 ```bash
 pip install -r requirements.txt
-python build_all.py
+python run.py --serve
 ```
 
-`build_all.py` runs the entire pipeline once, in order: generates synthetic data →
-builds the feature store → trains all ML models → builds the RAG index → smoke-tests
-the optimizer and scenario simulator → generates a sample executive PPTX report.
-Takes about 30–60 seconds on a laptop.
+`run.py --serve` checks for the required generated artifacts and builds any missing
+components before launching the Streamlit dashboard. If everything is already built,
+it starts the app immediately.
 
-Then launch the Streamlit dashboard:
+If you prefer to build manually, `python build_all.py` still works; the build now
+skips already-generated data unless you pass `--force`.
+
+Then launch the Streamlit dashboard manually:
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run app.py
 ```
 
 Use the dashboard to ask business questions and get structured, explainable answers.
@@ -203,3 +205,9 @@ python3 build_all.py
 
 This is fully deterministic (fixed random seeds) except for the exact PuLP/CBC
 solver timing.
+
+Regenerate everything from scratch:
+
+```bash
+python build_all.py
+```

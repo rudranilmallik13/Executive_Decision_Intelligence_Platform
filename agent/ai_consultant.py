@@ -16,12 +16,12 @@ is the real thing. Swapping the router for a real LLM tool-use loop is a
 ~50-line change (see `route_with_llm()` stub at the bottom).
 
 Usage:
-    python3 agent/ai_consultant.py "Why did revenue drop in Q2 2026?"
-    python3 agent/ai_consultant.py "Which customers are likely to churn?"
-    python3 agent/ai_consultant.py "What pricing strategy should we use for Europe?"
-    python3 agent/ai_consultant.py "What happens if inflation increases by 3%?"
-    python3 agent/ai_consultant.py "How much inventory should we order?"
-    python3 agent/ai_consultant.py "What should we do next?"
+    python agent/ai_consultant.py "Why did revenue drop in Q2 2026?"
+    python agent/ai_consultant.py "Which customers are likely to churn?"
+    python agent/ai_consultant.py "What pricing strategy should we use for Europe?"
+    python agent/ai_consultant.py "What happens if inflation increases by 3%?"
+    python agent/ai_consultant.py "How much inventory should we order?"
+    python agent/ai_consultant.py "What should we do next?"
 """
 import re
 import sys
@@ -75,6 +75,10 @@ class AIConsultant:
             return self.answer_inventory(question)
         if any(k in q for k in ["pricing strategy", "price increase", "what price", "should we price"]):
             return self.answer_pricing(question)
+        if any(k in q for k in ["marketing", "budget allocation", "ad spend", "spend allocation", "advertising"]):
+            return self.answer_marketing_budget(question)
+        if any(k in q for k in ["supplier", "supplier risk", "sourcing", "secondary supplier", "diversification", "supply chain"]):
+            return self.answer_supplier_selection(question)
         if any(k in q for k in ["inflation", "what happens if", "what if", "scenario", "simulate"]):
             return self.answer_scenario(question)
         if any(k in q for k in ["what should we do", "recommend", "next steps", "action plan"]):
@@ -93,6 +97,11 @@ class AIConsultant:
         yoy = df[df["month"] == (pd.to_datetime(latest["month"]) - pd.DateOffset(months=12))]
 
         revenue_change_pct = (latest["revenue"] - prior["revenue"]) / prior["revenue"] * 100
+
+        trend_df = df.tail(6)[[
+            "month", "revenue", "units_sold", "competitor_price_index", "market_sentiment_score"
+        ]].copy()
+        trend_df["month"] = trend_df["month"].astype(str)
 
         # ML explanation of the current month's revenue forecast (SHAP)
         dummy = pd.get_dummies(self.monthly, columns=["region"], prefix="region")
@@ -116,6 +125,7 @@ class AIConsultant:
                 "competitor_price_index": round(float(latest["competitor_price_index"]), 1),
                 "market_sentiment_score": round(float(latest["market_sentiment_score"]), 3),
             },
+            "trend": trend_df.to_dict(orient="records"),
             "model_explanation": shap_explanation,
             "supporting_evidence": [
                 {"source": h["source"], "excerpt": h["text"][:300].strip(), "relevance_score": round(h["score"], 3)}
@@ -147,6 +157,12 @@ class AIConsultant:
         if region:
             scored = scored[scored.region == region]
         top_risk = scored.sort_values("churn_probability", ascending=False).head(10)
+        churn_bins = pd.cut(scored["churn_probability"], bins=[0, 0.2, 0.4, 0.6, 0.8, 1.0], include_lowest=True)
+        churn_dist = scored.groupby(churn_bins).size().reindex(pd.IntervalIndex.from_breaks([0, 0.2, 0.4, 0.6, 0.8, 1.0]), fill_value=0)
+        churn_distribution = [
+            {"bucket": f"{interval.left:.0%}–{interval.right:.0%}", "count": int(count)}
+            for interval, count in churn_dist.items()
+        ]
         return {
             "question": question,
             "answer_type": "churn_prediction",
@@ -160,6 +176,7 @@ class AIConsultant:
             "top_at_risk_customers": top_risk[
                 ["customer_id", "region", "segment", "churn_probability", "predicted_clv_12mo", "top_churn_drivers"]
             ].to_dict(orient="records"),
+            "churn_probability_distribution": churn_distribution,
             "narrative": (
                 f"{int((scored.churn_probability > 0.6).sum())} of {len(scored)} customers analyzed "
                 f"are High risk (>60% churn probability), representing an estimated "
@@ -259,6 +276,99 @@ class AIConsultant:
                 f"the profit-maximizing price change is {best['price_change_pct']:+.0%}, yielding an "
                 f"estimated profit of ${best['estimated_profit']:,.0f}/month vs "
                 f"${grid.iloc[3]['estimated_profit']:,.0f} at the current price."
+            ),
+        }
+
+    def _parse_budget(self, question, default=1_000_000):
+        match = re.search(r"budget(?: of|:)?\s*\$?([\d,]+(?:\.\d+)?)(?:\s*(million|m|k))?", question.lower())
+        if not match:
+            return default
+        value = float(match.group(1).replace(",", ""))
+        suffix = match.group(2)
+        if suffix in ("million", "m"):
+            value *= 1_000_000
+        elif suffix == "k":
+            value *= 1_000
+        return value
+
+    def answer_marketing_budget(self, question):
+        region = self.detect_region(question)
+        budget = int(self._parse_budget(question, default=1_000_000))
+        recent = self.monthly.sort_values(["region", "time_idx"]).groupby("region").tail(6)
+        roi_df = recent.groupby("region").agg(
+            revenue_sum=("revenue", "sum"),
+            marketing_spend_sum=("marketing_spend", "sum"),
+        ).reset_index()
+        roi_df["roi_per_dollar"] = roi_df.apply(
+            lambda row: float(row["revenue_sum"] / row["marketing_spend_sum"]) if row["marketing_spend_sum"] > 0 else 1.0,
+            axis=1,
+        )
+        region_predicted_roi = roi_df.set_index("region")["roi_per_dollar"].to_dict()
+        allocation = optimize_marketing_budget(region_predicted_roi, total_budget=budget, min_per_region=50_000)
+
+        region_highlight = region or "All regions"
+        top_region = allocation.iloc[0]["region"]
+        top_budget = allocation.iloc[0]["allocated_budget"]
+        top_revenue = allocation.iloc[0]["predicted_incremental_revenue"]
+
+        return {
+            "question": question,
+            "answer_type": "marketing_budget_allocation",
+            "region_filter": region,
+            "budget": budget,
+            "roi_assumptions": region_predicted_roi,
+            "marketing_allocation": allocation.round(2).to_dict(orient="records"),
+            "narrative": (
+                f"With a ${budget:,.0f} marketing budget, the optimizer allocates spend to maximize predicted "
+                f"incremental revenue across regions based on recent ROI. {top_region} receives the highest "
+                f"allocation (${top_budget:,.0f}) and is expected to deliver ${top_revenue:,.0f} in incremental "
+                f"revenue, while still maintaining a minimum allocation floor across regions."
+            ),
+        }
+
+    def answer_supplier_selection(self, question):
+        region = self.detect_region(question) or "Europe"
+        inv = self.inventory.copy()
+        if region:
+            inv = inv[inv.region == region]
+        inventory_orders = optimize_inventory(inv, budget=None)
+        required_volume = int(inventory_orders["recommended_order_qty"].sum())
+
+        supplier_options = [
+            {"name": "Nordic Supply Co", "unit_cost": 42.0, "capacity": 25000},
+            {"name": "Meridian Components", "unit_cost": 45.0, "capacity": 25000},
+            {"name": "PacificParts Ltd", "unit_cost": 44.0, "capacity": 22000},
+            {"name": "Delta Manufacturing", "unit_cost": 47.5, "capacity": 18000},
+        ]
+
+        fallback_note = None
+        try:
+            allocation = select_supplier(required_volume, supplier_options, max_share=0.4)
+        except ValueError:
+            allocation = select_supplier(required_volume, supplier_options, max_share=1.0)
+            fallback_note = (
+                "The standard 40% supplier diversification cap was not feasible for this required volume, "
+                "so the model relaxed the cap to prioritize fulfillment."
+            )
+
+        supplier_exposure = (
+            inv.groupby("supplier")["units_on_hand"].sum()
+            .reset_index(name="units_on_hand")
+            .sort_values("units_on_hand", ascending=False)
+        )
+
+        return {
+            "question": question,
+            "answer_type": "supplier_selection",
+            "region_filter": region,
+            "required_volume": required_volume,
+            "supplier_allocation": allocation.round(2).to_dict(orient="records"),
+            "current_supplier_exposure": supplier_exposure.to_dict(orient="records"),
+            "diversification_policy": "No supplier should exceed 40% of volume where feasible.",
+            "narrative": (
+                f"To fulfill approximately {required_volume:,} units for {region}, the optimizer selects a diversified mix "
+                f"of suppliers that minimize procurement cost while respecting the supplier share cap. "
+                f"{fallback_note or 'The 40% diversification policy was feasible with the available supplier capacities.'}"
             ),
         }
 

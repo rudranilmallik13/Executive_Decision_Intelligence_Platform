@@ -123,7 +123,7 @@ class RAGPipeline:
 
 
 if __name__ == "__main__":
-    print("NOTE: run `python3 rag/build_index.py` instead of this file directly -- building "
+    print("NOTE: run `python rag/build_index.py` instead of this file directly -- building "
           "the index here would pickle TfidfEmbedder under the wrong module path ('__main__'), "
           "which then fails to load from the agent or report generator.")
     import sys
